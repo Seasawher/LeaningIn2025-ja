@@ -1,16 +1,15 @@
 /-!
 
-Primitive recursion
+原始的再帰
 ===================
 
-How do we then express recursion?
+では再帰をどのように表現するのでしょうか？
 
-We use *recursors*. For every inductive data,
-there exists a recursor that can be used to define
-primitively recursive definitions.
+*再帰子*を使います。すべての帰納的データに対して、
+原始的再帰的定義を定義するために使用できる再帰子が存在します。
 -/
 
--- Natural numbers are an inductive definition:
+-- 自然数は帰納的定義です：
 
 namespace JustToRecall
 
@@ -20,7 +19,7 @@ inductive Nat where
 
 end JustToRecall
 
--- And this is the recursor for natural numbers:
+-- これが自然数の再帰子です：
 
 /--
 info: Nat.rec.{u}
@@ -34,7 +33,7 @@ info: Nat.rec.{u}
 -- #print Nat.rec
 
 /-
-Addition on Nat, the usual way:
+自然数の加算、通常の方法：
 
 ```
 def add (a b : Nat) : Nat :=
@@ -43,7 +42,7 @@ def add (a b : Nat) : Nat :=
   | .succ a' => Nat.succ (add a' b)
 ```
 
-Using the recursor, we can define it without recursion:
+再帰子を使用すると、再帰なしで定義できます：
 -/
 
 def add (a b : Nat) :=
@@ -53,7 +52,7 @@ def add (a b : Nat) :=
     a
 
 /-
-And it works!
+そして、正常に動作します！
 -/
 
 /-- info: 35 -/

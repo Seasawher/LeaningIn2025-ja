@@ -1,12 +1,11 @@
 /-!
-Well-founded recursion
+整礎帰納法による再帰
 ======================
 
-You might want to define recursive functions
-that are not structurally recursive.
+構造的再帰ではない再帰関数を定義したい場合があります。
 
-Consider the following function to check if
-all elements in an `Array` are the same:
+`Array`のすべての要素が同じかどうかを確認する
+次の関数を考えてみましょう：
 -/
 
 def areAllSame (arr : Array Nat) (i : Nat) :=
@@ -22,22 +21,21 @@ decreasing_by
   omega
 
 /-
-It is not structural recursive (`i` gets larger as we go).
+これは構造的再帰ではありません（進むにつれて`i`が大きくなります）。
 
-But there exists a *decreasing measure*:
-The expression `arr.size - i` gets smaller in the recursive call.
-We specify the measure in the `termination_by` clause.
+しかし、*減少測度*が存在します：
+再帰呼び出しでは式`arr.size - i`が小さくなります。
+測度は`termination_by`節で指定します。
 
-For this to go through, we have prove to Lean that the measure is decreasing,
-this happens in the `decreasing_by` clause.
+これを通過させるためには、測度が減少することをLeanに証明する必要があります。
+これは`decreasing_by`節で行われます。
 -/
 
 /-
-Automatic recursion proofs
+自動再帰証明
 --------------------------
 
-In many cases, Lean will automatically infer the termination measure
-and/or the termination proof.
+多くの場合、Leanは終了測度や終了証明を自動的に推論します。
 -/
 
 def areAllSame' (arr : Array Nat) (i : Nat) :=
@@ -50,16 +48,16 @@ def areAllSame' (arr : Array Nat) (i : Nat) :=
     true
 
 /-
-Use `termination_by?` to inspect the termination measure.
+終了測度を調査するには`termination_by?`を使用します。
 -/
 
 /-
-Lexicographic order
+辞書式順序
 -------------------
-The termination measure can be more complex, saying something like
-“either `a` gets smaller, or `a` stays the same and `b` gets smaller”.
+終了測度はより複雑になる場合があります。例えば
+「`a`が小さくなるか、`a`が同じままで`b`が小さくなる」というようなものです。
 
-Classic example: The Ackermann funcion.
+古典的な例：アッカーマン関数。
 -/
 
 def ackermann : (a b : Nat) → Nat
@@ -69,17 +67,17 @@ def ackermann : (a b : Nat) → Nat
 -- termination_by?
 
 /-
-Downsides of well-founded recursion
+整礎帰納法による再帰の欠点
 ---------------------------------
 
-Well-founded recursion is (mostly) strictly more powerful than
-structural recursion. So why ever use structural recursion?
+整礎帰納法による再帰は（ほとんどの場合）構造的再帰よりも
+厳密に強力です。では、なぜ構造的再帰を使うのでしょうか？
 
-1. No explicit proof needed
+1. 明示的な証明が不要
 
-2. Good kernel reduction behavior.
-   This is important for
-    * defining types
-    * kernel computation
-      (e.g. evaluation using `rfl` or `by decide`).
+2. カーネルの還元動作が良好。
+   これは以下の点で重要です：
+    * 型の定義
+    * カーネル計算
+      （例：`rfl`や`by decide`を使用した評価）。
 -/

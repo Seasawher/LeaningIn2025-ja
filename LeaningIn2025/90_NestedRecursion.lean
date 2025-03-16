@@ -1,9 +1,9 @@
 /--
-Nested recursion (bonus material)
+ネストされた再帰（追加資料）
 =================================
 
-Consider the following data structure:
-A tree where a node has a value and a list of children.
+次のデータ構造を考えてみましょう：
+ノードが値と子のリストを持つツリー。
 -/
 
 structure Tree (α : Type) where
@@ -11,7 +11,7 @@ structure Tree (α : Type) where
   children : List (Tree α)
 
 /-
-One often wants a `map` function for such a tree:
+このようなツリーに対して`map`関数が欲しいことがよくあります：
 -/
 
 def Tree.map (f : α → β) : Tree α → Tree β
@@ -23,12 +23,13 @@ decreasing_by
   decreasing_tactic
 
 /-
-Here, Lean knows that the `t` provided by `List.map` is indeed
-a member of the list `children`: We get `t ∈ children` into scope.
+ここでは、Leanは`List.map`によって提供される`t`が
+実際にリスト`children`のメンバーであることを知っています：
+スコープ内に`t ∈ children`が入ります。
 -/
 
 /-
-Until recently, Lean did not know that:
+最近まで、Leanはこれを知りませんでした：
 -/
 set_option wf.preprocess false
 
@@ -51,7 +52,7 @@ def Tree.map' (f : α → β) : Tree α → Tree β
 termination_by t => t
 
 /--
-This required the user to use `List.attach` to inject the necessary information:
+これにはユーザーが必要な情報を注入するために`List.attach`を使用する必要がありました：
 -/
 
 def Tree.map'' (f : α → β) : Tree α → Tree β

@@ -1,10 +1,9 @@
 /-!
-Structural recursion
+構造的再帰
 ====================
 
-Using recursors to define recursive functions is tedious,
-so Lean does that work for us, and we can just define
-recursive functions like this:
+再帰関数を定義するために再帰子を使用するのは面倒なので、
+Leanがその作業をしてくれて、次のように再帰関数を定義できます：
 -/
 
 def add (a b : Nat) : Nat :=
@@ -13,19 +12,18 @@ def add (a b : Nat) : Nat :=
   | .succ a' => Nat.succ (add a' b)
 
 /-
-But under the hood, this is transformed into a non-recursive
-definition using the recursor!
+しかし裏側では、これは再帰子を使用した非再帰的な定義に変換されています！
 -/
 
 /-
-Course-of-value recursion
+コース・オブ・バリュー再帰
 -------------------------
 
-In fact, Lean uses a more powerful translation called
-*course-of-value recursion* that allows recursive
-calls on (non-immediate) subexpression of the parameter:
+実際、Leanはより強力な変換を使用しています。これは
+*コース・オブ・バリュー再帰*と呼ばれ、パラメータの（直接的でない）
+部分式に対する再帰呼び出しを可能にします：
 
-Classic example:
+古典的な例：
 -/
 
 def fib (n : Nat) : Nat :=
@@ -36,14 +34,14 @@ def fib (n : Nat) : Nat :=
     fib n' + fib (Nat.succ n')
 
 /-
-Bored and need a challenge? Define `fib` using `Nat.rec`!
+退屈で挑戦が必要ですか？`Nat.rec`を使って`fib`を定義してみてください！
 -/
 
 /-
-Mutual recursion
+相互再帰
 ----------------
 
-Another addition over primitive recursion is support for mutual recursion:
+原始的再帰に対するもう一つの追加機能は相互再帰のサポートです：
 -/
 
 mutual

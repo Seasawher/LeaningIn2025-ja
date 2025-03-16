@@ -1,12 +1,12 @@
 /-
-Lean has no recursive definition
+Leanには再帰的定義がない
 ================================
 
-The logic implemented by Lean does not support recursion.
-The Kernel will reject recursive definitions.
+Leanで実装されているロジックは再帰をサポートしていません。
+カーネルは再帰的定義を拒否します。
 
-Let's try to define one anways…
-(This is not how to use Lean )
+それでも再帰的定義を試してみましょう…
+（これはLeanの正しい使い方ではありません）
 
 -/
 
@@ -36,14 +36,14 @@ run_elab
   })
 
 /-
-Soundness
+健全性
 ---------
 
-Why is it so important that the Lean kernel does not simply
-accept recursive definitions like other programming languages?
+なぜLeanのカーネルが他のプログラミング言語のように
+単純に再帰的定義を受け入れないことがそれほど重要なのでしょうか？
 
-Because it would immediately break the soundness of the logic;
-we could prove any propositon this way:
+それはすぐにロジックの健全性を破壊するからです；
+このようにどんな命題でも証明できてしまいます：
 ```
 def reallyBad {P : Prop} : P := reallyBad
 ```

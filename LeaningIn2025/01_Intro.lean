@@ -1,22 +1,22 @@
 /-!
 
-Recursive definitions
+再帰的定義
 =====================
 Joachim Breitner, Lean FRO
-Leaning In 2025, March 13, Berlin
+Leaning In 2025, 2025年3月13日, ベルリン
 
 
-Agenda
+アジェンダ
 ------
 
-* Lean has no recursive definitions!
-* Primitive recursion the hard way
-* Structural recursion
-* Well-founded recursion
-* Partial fixpoint
-* Compiler vs. Kernel
+* Leanには再帰的定義がない！
+* 原始的再帰 - ハードウェイ
+* 構造的再帰
+* 整礎帰納法による再帰
+* 部分固定点
+* コンパイラ vs カーネル
 
-Bonus material
-* Nested recursion
+追加資料
+* ネストされた再帰
 
 -/

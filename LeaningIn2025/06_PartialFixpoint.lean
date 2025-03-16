@@ -1,18 +1,17 @@
 /-!
-Partial fixpoints
+部分固定点
 =================
 
-The latest addition to the zoo of recursive function
-definition mechanisms: `partial_fixpoint`.
+再帰関数定義メカニズムの最新の追加：`partial_fixpoint`。
 
-No termination proof needed!
-This allows non-terminating function specifications!
+終了証明は不要です！
+これにより非終了関数仕様が可能になります！
 
-Mostly useful when verifying software or algorithms.
+主にソフトウェアやアルゴリズムの検証時に有用です。
 -/
 
 /-
-Here is an example of a function with a tricky termination proof:
+終了証明が難しい関数の例：
 -/
 
 def f91 (n : Nat) : Option Nat :=
@@ -22,18 +21,18 @@ def f91 (n : Nat) : Option Nat :=
 partial_fixpoint
 
 /-
-Rules for `partial_fixpoint` (simplified):
+`partial_fixpoint`のルール（簡略化）：
 
-* The function type returns an `Option`
-* The function is constructed using monadic operations
-  (bind, `do`-notation)
+* 関数の型は`Option`を返す
+* 関数はモナディック操作を使用して構築される
+  （bind, `do`記法）
 
-In these cases, Lean can define the function and prove the
-equation without further help.
+このような場合、Leanは関数を定義し、追加のヘルプなしで
+方程式を証明することができます。
 
-The user can later, if they want, prove that the function
-is total (i.e. never returns `Option.none`).
+ユーザーは後で必要に応じて、関数が全体的であること
+（つまり、`Option.none`を返さないこと）を証明できます。
 
-More on this example on Zulip:
+この例についてのZulipでの詳細：
 https://leanprover.zulipchat.com/#narrow/channel/270676-lean4/topic/McCarthy.2091.20function.20using.20partial_fixpoint
 -/
