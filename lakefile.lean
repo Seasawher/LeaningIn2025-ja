@@ -7,3 +7,4 @@ package "LeaningIn2025" where
 @[default_target]
 lean_lib «LeaningIn2025» where
   -- add library configuration options here
+  globs := #[.submodules `LeaningIn2025]
